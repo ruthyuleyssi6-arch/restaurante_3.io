@@ -3,237 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sabores del Sur | Restaurante</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        principal: '#8B2323',    // Rojo vino llamativo
-                        secundario: '#FFB300',   // Dorado cálido
-                        neutro: '#2C1810',       // Marrón oscuro
-                        claro: '#FFF8E7'         // Fondo crema
-                    },
-                    fontFamily: {
-                        principal: ['"Playfair Display"', 'serif'],
-                        secundaria: ['"Poppins"', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .text-sombra {
-                text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-            }
-            .sombra-suave {
-                box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-            }
-            .scroll-suave {
-                scroll-behavior: smooth;
-            }
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-        }
-    </style>
+    <title>Restaurante Sabor & Arte</title>
+    <!-- Fuentes e Iconos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Enlace a tus estilos -->
+    <link rel="stylesheet" href="estilos.css">
 </head>
-<body class="scroll-suave bg-claro">
+<body>
 
-    <!-- Barra de Navegación -->
-    <header id="inicio" class="fixed w-full z-50 transition-all duration-300 bg-principal/95 backdrop-blur-sm">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+    <!-- Encabezado y Navegación -->
+    <header class="cabecera" id="cabecera">
+        <div class="contenedor">
             <!-- Icono / Logo -->
-            <div class="flex items-center gap-3">
-                <div class="bg-secundario text-principal p-2 rounded-full text-2xl">
-                    <i class="fa fa-cutlery"></i>
-                </div>
-                <span class="text-white text-xl md:text-2xl font-bold tracking-wide">SABORES DEL SUR</span>
+            <div class="logo">
+                <img src="logo.png" alt="Icono Restaurante">
+                <span>Sabor & Arte</span>
             </div>
 
-            <!-- Buscador -->
-            <div class="hidden md:flex items-center bg-white rounded-full overflow-hidden w-64">
-                <input type="text" placeholder="Buscar platos, eventos..." class="w-full px-4 py-1.5 outline-none text-neutro text-sm">
-                <button class="bg-secundario text-principal px-3 py-1.5 hover:bg-yellow-400 transition-colors">
-                    <i class="fa fa-search"></i>
-                </button>
+            <!-- Barra de Búsqueda -->
+            <div class="buscador">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar platos, bebidas o eventos...">
             </div>
 
             <!-- Menú de Navegación -->
-            <nav class="hidden lg:flex gap-8 text-white font-medium">
-                <a href="#inicio" class="hover:text-secundario transition-colors">Inicio</a>
-                <a href="#carta" class="hover:text-secundario transition-colors">Carta de Platos</a>
-                <a href="#eventos" class="hover:text-secundario transition-colors">Eventos</a>
-                <a href="#contacto" class="hover:text-secundario transition-colors">Comuníquese</a>
-                <a href="#reserva" class="bg-secundario text-principal px-4 py-1.5 rounded-full hover:bg-yellow-400 transition-all transform hover:scale-105">Reserva Ya</a>
+            <nav class="menu-principal">
+                <a href="#inicio">Inicio</a>
+                <a href="#carta">Carta de Platos</a>
+                <a href="#eventos">Eventos</a>
+                <a href="#reserva" class="boton boton-reserva">Reserva</a>
+                <a href="#contacto" class="boton boton-contacto">Comunícate</a>
             </nav>
 
-            <!-- Botón menú móvil -->
-            <button class="lg:hidden text-white text-2xl" id="botonMenu">
-                <i class="fa fa-bars"></i>
+            <!-- Botón Menú Móvil -->
+            <button class="boton-menu" id="botonMenu">
+                <i class="fa-solid fa-bars"></i>
             </button>
         </div>
 
-        <!-- Menú móvil -->
-        <div id="menuMovil" class="hidden lg:hidden bg-principal/98 text-white">
-            <div class="container mx-auto px-4 py-3 flex flex-col gap-3">
-                <div class="flex items-center bg-white rounded-full overflow-hidden my-2">
-                    <input type="text" placeholder="Buscar..." class="w-full px-4 py-2 outline-none text-neutro">
-                    <button class="bg-secundario text-principal px-4 py-2">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </div>
-                <a href="#inicio" class="py-2 border-b border-red-800">Inicio</a>
-                <a href="#carta" class="py-2 border-b border-red-800">Carta de Platos</a>
-                <a href="#eventos" class="py-2 border-b border-red-800">Eventos</a>
-                <a href="#contacto" class="py-2 border-b border-red-800">Comuníquese</a>
-                <a href="#reserva" class="bg-secundario text-principal text-center py-2 rounded-full mt-2 font-semibold">Reservar Mesa</a>
+        <!-- Menú Desplegable Móvil -->
+        <div class="menu-movil" id="menuMovil">
+            <div class="buscador-movil">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar...">
             </div>
+            <a href="#inicio">Inicio</a>
+            <a href="#carta">Carta de Platos</a>
+            <a href="#eventos">Eventos</a>
+            <a href="#reserva" class="boton boton-reserva">Reserva</a>
+            <a href="#contacto" class="boton boton-contacto">Comunícate</a>
         </div>
     </header>
 
-    <!-- Sección Principal con TU IMAGEN -->
-    <section class="pt-28 md:pt-36 pb-20 bg-[url('fondo.jpg')] bg-cover bg-center relative">
-        <div class="absolute inset-0 bg-black/60"></div>
-        <div class="container mx-auto px-4 text-center relative z-10 text-white py-16 md:py-28">
-            <h1 class="text-4xl md:text-6xl font-bold text-sombra mb-4">Bienvenidos a Sabores del Sur</h1>
-            <p class="text-lg md:text-xl max-w-3xl mx-auto text-sombra opacity-95">Disfruta de la mejor gastronomía, preparada con ingredientes frescos y recetas tradicionales que deleitarán tu paladar en cada bocado.</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10">
-                <a href="#reserva" class="bg-secundario text-principal px-8 py-3 rounded-full text-lg font-semibold hover:bg-yellow-400 transition-all transform hover:scale-105 sombra-suave">Reservar Mesa</a>
-                <a href="#carta" class="bg-transparent border-2 border-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-white hover:text-principal transition-all">Ver Nuestra Carta</a>
+    <!-- Sección Principal -->
+    <section class="portada" id="inicio">
+        <div class="fondo-portada">
+            <img src="fondo.jpg" alt="Restaurante">
+            <div class="degradado"></div>
+        </div>
+
+        <div class="contenedor contenido-portada">
+            <h1>Sabores que cuentan historias, momentos que recordarás</h1>
+            <p>Disfruta de la mejor gastronomía, ambiente acogedor y servicio excepcional. Cada plato es preparado con ingredientes frescos y mucha pasión.</p>
+            <div class="botones-accion">
+                <a href="#reserva" class="boton boton-grande boton-dorado">Reservar Mesa</a>
+                <a href="#carta" class="boton boton-grande boton-transparente">Ver Nuestra Carta</a>
+            </div>
+            <div class="caracteristicas">
+                <div>
+                    <i class="fa-solid fa-utensils"></i>
+                    <p>Cocina Artesanal</p>
+                </div>
+                <div>
+                    <i class="fa-solid fa-wine-glass"></i>
+                    <p>Bebidas Únicas</p>
+                </div>
+                <div>
+                    <i class="fa-solid fa-star"></i>
+                    <p>Calidad Premium</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="onda-decorativa">
+            <svg viewBox="0 0 1440 120"><path fill="#FFF8E1" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path></svg>
+        </div>
+    </section>
+
+    <!-- Sección Carta de Platos -->
+    <section class="seccion carta" id="carta">
+        <div class="contenedor">
+            <div class="titulo-seccion">
+                <h2>Nuestra Carta de Platos</h2>
+                <p>Una selección especial de recetas tradicionales y creaciones innovadoras, elaboradas con los mejores ingredientes.</p>
+            </div>
+
+            <div class="grid-platos">
+                <div class="tarjeta-plato">
+                    <img src="almuerzo.jpg" alt="Lomo Saltado">
+                    <h3>Lomo Saltado</h3>
+                    <p>Carne de res, verduras frescas, arroz y papas fritas. Receta clásica peruana.</p>
+                    <div class="precio">S/ 45.00</div>
+                </div>
+                <div class="tarjeta-plato">
+                    <img src="ensalada.jpg" alt="Ceviche Mixto">
+                    <h3>Ceviche Mixto</h3>
+                    <p>Pescado fresco, mariscos, limón, ají y cebolla. El sabor del mar en tu mesa.</p>
+                    <div class="precio">S/ 52.00</div>
+                </div>
+                <div class="tarjeta-plato">
+                    <img src="postre.jpg" alt="Suspiro a la Limeña">
+                    <h3>Suspiro a la Limeña</h3>
+                    <p>Dulce de leche, merengue y canela. Un postre tradicional e irresistible.</p>
+                    <div class="precio">S/ 18.00</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Carta de Platos -->
-    <section id="carta" class="py-16 bg-white">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl text-principal font-bold mb-4">Nuestra Carta de Platos</h2>
-            <div class="w-24 h-1 bg-secundario mx-auto mb-10"></div>
-            <p class="max-w-2xl mx-auto text-gray-600 mb-12">Una selección de los mejores sabores, pensada para ti y los tuyos.</p>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="rounded-xl overflow-hidden sombra-suave hover:scale-105 transition-transform duration-300">
-                    <img src="almuerzo.jpg" alt="Plato Principal" class="w-full h-60 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-neutro">Platos Principales</h3>
-                        <p class="text-gray-600 mt-2">Carnes, pastas y especialidades de la casa.</p>
-                    </div>
+    <!-- Sección Eventos -->
+    <section class="seccion eventos" id="eventos">
+        <div class="contenedor">
+            <div class="titulo-seccion">
+                <h2>Eventos Especiales</h2>
+                <p>Celebraciones, cenas temáticas, música en vivo y momentos únicos que preparamos para ti.</p>
+            </div>
+
+            <div class="lista-eventos">
+                <div class="tarjeta-evento">
+                    <h3>🎶 Noches de Música en Vivo</h3>
+                    <p>Todos los viernes y sábados desde las 8:00 PM. Disfruta de música en directo mientras cenas con nosotros.</p>
                 </div>
-                <div class="rounded-xl overflow-hidden sombra-suave hover:scale-105 transition-transform duration-300">
-                    <img src="pizza.jpg" alt="Postres" class="w-full h-60 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-neutro">Postres Caseros</h3>
-                        <p class="text-gray-600 mt-2">El broche de oro para tu experiencia.</p>
-                    </div>
+                <div class="tarjeta-evento">
+                    <h3>🎉 Celebraciones Privadas</h3>
+                    <p>Reserva nuestros espacios para cumpleaños, aniversarios o reuniones empresariales. Menús personalizados a tu gusto.</p>
                 </div>
-                <div class="rounded-xl overflow-hidden sombra-suave hover:scale-105 transition-transform duration-300">
-                    <img src="bebidas.jpg" alt="Bebidas" class="w-full h-60 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-neutro">Bebidas y Vinos</h3>
-                        <p class="text-gray-600 mt-2">Selección exclusiva para acompañar tus comidas.</p>
-                    </div>
+                <div class="tarjeta-evento">
+                    <h3>🍷 Cenas Temáticas</h3>
+                    <p>Cada mes organizamos cenas especiales con platos exclusivos y maridajes seleccionados. ¡No te las pierdas!</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Eventos -->
-    <section id="eventos" class="py-16 bg-claro">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl text-principal font-bold mb-4">Próximos Eventos</h2>
-            <div class="w-24 h-1 bg-secundario mx-auto mb-10"></div>
-            <p class="max-w-2xl mx-auto text-gray-600 mb-12">Celebra momentos especiales con nosotros.</p>
-            <div class="bg-white rounded-2xl sombra-suave p-8 max-w-4xl mx-auto border-l-8 border-secundario">
-                <h3 class="text-2xl font-bold text-neutro">Cenas Especiales y Celebraciones</h3>
-                <p class="text-gray-600 mt-4">Organizamos cumpleaños, aniversarios, reuniones empresariales y noches temáticas con menús personalizados y atención exclusiva.</p>
-                <button class="mt-6 bg-principal text-white px-8 py-2 rounded-full hover:bg-red-900 transition-colors">Más Información</button>
+    <!-- Sección Reserva y Contacto -->
+    <section class="seccion contacto-reserva" id="reserva">
+        <div class="contenedor">
+            <div class="titulo-seccion">
+                <h2>Reserva tu Mesa</h2>
+                <p>Garantiza tu lugar y vive una experiencia inolvidable con nosotros.</p>
+            </div>
+
+            <div class="formulario-contenedor" id="contacto">
+                <form action="#" class="formulario">
+                    <input type="text" placeholder="Tu nombre completo" required>
+                    <input type="tel" placeholder="Tu teléfono" required>
+                    <input type="date" required>
+                    <input type="time" required>
+                    <input type="number" min="1" max="20" placeholder="Cantidad de personas" required>
+                    <textarea rows="3" placeholder="Algún comentario o solicitud especial..."></textarea>
+                    <button type="submit" class="boton boton-grande boton-dorado">Enviar Reserva</button>
+                </form>
+
+                <div class="info-contacto">
+                    <h3>Comunícate con Nosotros</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> Urb. Luis Vallejos Santoni, Cusco, Perú</p>
+                    <p><i class="fa-solid fa-phone"></i> +51 933 713 061</p>
+                    <p><i class="fa-solid fa-envelope"></i> ruthyuleyssi6@gmail.com</p>
+                    <p><i class="fa-solid fa-clock"></i> Lunes a Domingo: 11:00 AM - 10:00 PM</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Reserva -->
-    <section id="reserva" class="py-16 bg-principal text-white">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Reserva tu Mesa</h2>
-            <div class="w-24 h-1 bg-secundario mx-auto mb-10"></div>
-            <form class="max-w-xl mx-auto grid md:grid-cols-2 gap-5 text-left" id="formReserva">
-                <div>
-                    <label class="block mb-2">Nombre Completo</label>
-                    <input type="text" class="w-full p-3 rounded-lg bg-white/10 border border-white/30 outline-none" placeholder="Tu nombre">
-                </div>
-                <div>
-                    <label class="block mb-2">Teléfono</label>
-                    <input type="tel" class="w-full p-3 rounded-lg bg-white/10 border border-white/30 outline-none" placeholder="Tu número">
-                </div>
-                <div>
-                    <label class="block mb-2">Fecha</label>
-                    <input type="date" class="w-full p-3 rounded-lg bg-white/10 border border-white/30 outline-none">
-                </div>
-                <div>
-                    <label class="block mb-2">Hora</label>
-                    <input type="time" class="w-full p-3 rounded-lg bg-white/10 border border-white/30 outline-none">
-                </div>
-                <div class="md:col-span-2">
-                    <label class="block mb-2">Número de Personas</label>
-                    <input type="number" min="1" max="20" class="w-full p-3 rounded-lg bg-white/10 border border-white/30 outline-none" placeholder="Cantidad de comensales">
-                </div>
-                <div class="md:col-span-2 text-center mt-2">
-                    <button type="submit" class="bg-secundario text-principal px-10 py-3 rounded-full text-lg font-semibold hover:bg-yellow-400 transition-all">Confirmar Reserva</button>
-                </div>
-            </form>
+    <!-- Pie de página -->
+    <footer class="pie-pagina">
+        <div class="contenedor">
+            <p>&copy; 2026 Restaurante Sabor & Arte. Todos los derechos reservados.</p>
         </div>
-    </section>
+    </footer>
 
-    <!-- Contacto -->
-    <section id="contacto" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl text-principal font-bold text-center mb-4">Comuníquese con Nosotros</h2>
-            <div class="w-24 h-1 bg-secundario mx-auto mb-12"></div>
-            <div class="grid md:grid-cols-2 gap-10">
-                <div class="space-y-6">
-                    <div class="flex items-center gap-4">
-                        <div class="bg-principal text-white p-3 rounded-full text-xl"><i class="fa fa-map-marker"></i></div>
-                        <div>
-                            <h4 class="font-semibold text-lg">Dirección</h4>
-                            <p class="text-gray-600">Urb.Luis Vallejos Santoni, Cusco - Perú</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="bg-principal text-white p-3 rounded-full text-xl"><i class="fa fa-phone"></i></div>
-                        <div>
-                            <h4 class="font-semibold text-lg">Teléfono</h4>
-                            <p class="text-gray-600">+51 933 713 061</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="bg-principal text-white p-3 rounded-full text-xl"><i class="fa fa-envelope"></i></div>
-                        <div>
-                            <h4 class="font-semibold text-lg">Correo Electrónico</h4>
-                            <p class="text-gray-600">ruthyuleyssi6@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="bg-principal text-white p-3 rounded-full text-xl"><i class="fa fa-clock-o"></i></div>
-                        <div>
-                            <h4 class="font-semibold text-lg">Horario de Atención</h4>
-                            <p class="text-gray-600">Lunes a Domingo: 11:00 AM - 10:00 PM</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="bg-principal text-white p-3 rounded-full text-xl"><i class="fa fa-whatsapp"></i></div>
-                        <div>
-                            <h4 class="font-semibold text-lg">WhatsApp</h4>
-                            <p class="text-gray-600">+51 933 713 061</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full
+    <!-- Enlace a tu archivo JavaScript -->
+    <script src="funciones.js"></script>
+</body>
+</html>
